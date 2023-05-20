@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     fetchApiConfig();
-    // genresCall();
+    genresCall();
   }, []);
 
   const fetchApiConfig = () => {
@@ -36,23 +36,23 @@ function App() {
     });
   };
 
-  // const genresCall = async () => {
-  //   let promises = [];
-  //   let endPoints = ["tv", "movie"];
-  //   let allGenres = {};
+  const genresCall = async () => {
+    let promises = [];
+    let endPoints = ["tv", "movie"];
+    let allGenres = {};
 
-  //   endPoints.forEach((url) => {
-  //     promises.push(fetchDataFromApi(`/genre/${url}/list`));
-  //   });
+    endPoints.forEach((url) => {
+      promises.push(fetchDataFromApi(`/genre/${url}/list`));
+    });
 
-  //   const data = await Promise.all(promises);
-  //   console.log(data);
-  //   data.map(({ genres }) => {
-  //     return genres.map((item) => (allGenres[item.id] = item));
-  //   });
+    const data = await Promise.all(promises);
+    console.log(data);
+    data.map(({ genres }) => {
+      return genres.map((item) => (allGenres[item.id] = item));
+    });
 
-  //   dispatch(getGenres(allGenres));
-  // };
+    dispatch(getGenres(allGenres));
+  };
 
   return (
     <BrowserRouter>
